@@ -2,7 +2,6 @@ package com.joaoh.site.priscila.domain.dto;
 
 import java.io.Serializable;
 
-import com.joaoh.site.priscila.domain.enums.TipoTurma;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,14 +11,14 @@ import lombok.Setter;
 public class AlunoDTO implements Serializable {
 
     private String nome;
-    private TipoTurma turma;
+    private Integer turmaId;
 
     public AlunoDTO () {}
 
 
-    public AlunoDTO(String nome, TipoTurma turma) {
+    public AlunoDTO(String nome, Integer turmaId) {
         this.nome = nome;
-        this.turma = turma;
+        this.turmaId = turmaId;
     }
     
 }

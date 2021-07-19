@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.joaoh.site.priscila.domain.Aluno;
+import com.joaoh.site.priscila.domain.Turma;
 import com.joaoh.site.priscila.domain.dto.AlunoDTO;
 import com.joaoh.site.priscila.repositories.AlunoRepository;
 import com.joaoh.site.priscila.services.exceptions.ObjectNotFoundException;
@@ -16,6 +17,9 @@ public class AlunoService {
 
     @Autowired
     private AlunoRepository alunoRepository;
+
+    @Autowired
+    private TurmaService turmaService;
 
     public List<Aluno> findAll() {
         return alunoRepository.findAll();
@@ -44,9 +48,19 @@ public class AlunoService {
 
     public Aluno fromDTO (Integer alunoId, AlunoDTO objDto) {
         Aluno aluno = this.findById(alunoId);
+        Turma turma = turmaService.findById(objDto.getTurmaId());
 
         aluno.setNome(objDto.getNome());
-        aluno.setTurma(objDto.getTurma());
+        aluno.setTurma(turma);
+
+        if (aluno.getMatricula() == null) {
+            Random random = new Random();
+            int numero = random.nextInt(100);
+
+            aluno.setMatricula(numero);
+        } else {
+            aluno.setMatricula(aluno.getMatricula());
+        }
 
         return aluno;
     }

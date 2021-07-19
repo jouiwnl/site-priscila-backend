@@ -4,13 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import com.joaoh.site.priscila.domain.enums.TipoTurma;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -32,13 +30,16 @@ public class Aluno implements Serializable{
     private String cpf;
     private LocalDate dataNascimento;
 
-    @Enumerated(EnumType.STRING)
-    private TipoTurma turma;
+    @ManyToOne
+    @JoinColumn(name = "turma_id")
+    private Turma turma;
+
+
 
     public Aluno () {}
 
 
-    public Aluno(Integer id, String nome, String cpf, LocalDate dataNascimento, TipoTurma turma) {
+    public Aluno(Integer id, String nome, String cpf, LocalDate dataNascimento, Turma turma) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
