@@ -3,15 +3,16 @@ package com.joaoh.site.priscila.controllers;
 import java.util.List;
 
 import com.joaoh.site.priscila.domain.Evento;
+import com.joaoh.site.priscila.domain.dto.EventoDTO;
 import com.joaoh.site.priscila.services.EventoService;
 import com.joaoh.site.priscila.services.utils.URICreator;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,5 +43,10 @@ public class EventoController {
         eventoObj = eventoService.insert(eventoObj);
         return ResponseEntity.created(URICreator.buildLocation(eventoObj.getId())).build();
     }
-    
+
+    @PutMapping(value="/{id}")
+    public ResponseEntity<Void> update(@RequestBody EventoDTO eventoDto, @PathVariable(name = "id") Integer eventoId) {
+        eventoService.update(eventoId, eventoDto);
+        return ResponseEntity.ok().build();
+    }
 }

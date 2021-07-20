@@ -3,6 +3,7 @@ package com.joaoh.site.priscila.domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,8 +27,13 @@ public class Aluno implements Serializable{
 
     private Integer matricula;
 
+    @Column(nullable = false)
     private String nome;
+    
+    @Column(nullable = false)
     private String cpf;
+    
+    @Column(nullable = false)
     private LocalDate dataNascimento;
 
     @ManyToOne

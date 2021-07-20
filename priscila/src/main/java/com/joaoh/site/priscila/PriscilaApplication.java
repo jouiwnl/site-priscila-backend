@@ -44,7 +44,7 @@ public class PriscilaApplication implements CommandLineRunner {
 		alunoRepository.save(a1);
 		t1.getAlunos().add(a1);
 
-		Evento e1 = new Evento(null, "Noite Teatral", LocalDate.parse("2021-11-19"), "Apresentações dos alunos referentes aos projetos feitos no ano");
+		Evento e1 = new Evento(null, "Noite Teatral", LocalDate.parse("2021-11-19"), "Apresentações dos alunos referentes aos projetos feitos no ano", "https://1.bp.blogspot.com/-vUpYFzULnkg/XrnkGoTnQgI/AAAAAAAA2oA/JhrKqk4OyiIcwcfAeV_fI0Ru3iMYmA7BACLcBGAsYHQ/s1600/ARTIGO%2BTEATRO%2B1.jpg");
 		eventoRepository.save(e1);
 	}
 
